@@ -1,0 +1,12 @@
+PullToRefresh
+
+GIF动画的播放
+	1、Movie类，Android自带的API。可以把gif文件每一帧解码出来；
+	2、第三方库，如 GifView 或者其他 gif文件播放控件；
+	3、用 WebView；
+
+文件上传	使用的是 HttpClient + HttpMime
+
+Volley
+
+第三方类库 ShareSDK
