@@ -1,7 +1,10 @@
 package com.north.neihan.bean;
 
-public class JokeGroup {
+import java.io.Serializable;
 
+public class JokeGroup implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private long create_time;
 	private int favorite_count;
 	private int user_bury;

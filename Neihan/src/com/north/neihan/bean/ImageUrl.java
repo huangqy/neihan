@@ -1,7 +1,10 @@
 package com.north.neihan.bean;
 
-public class ImageUrl {
+import java.io.Serializable;
 
+public class ImageUrl implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private String url;
 
 	public ImageUrl(String url) {

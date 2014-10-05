@@ -1,9 +1,11 @@
 package com.north.neihan.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ImageDetail {
+public class ImageDetail implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private int width;
 	private int height;
 	private String uri;

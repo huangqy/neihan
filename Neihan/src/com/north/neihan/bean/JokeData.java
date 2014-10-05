@@ -1,9 +1,11 @@
 package com.north.neihan.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class JokeData {
+public class JokeData implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private long min_time;
 	private boolean has_more;
 	private String tip;

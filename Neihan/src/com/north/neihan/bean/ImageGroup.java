@@ -1,9 +1,11 @@
 package com.north.neihan.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ImageGroup {
+public class ImageGroup implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private long create_time;
 	private int favorite_count;
 	private int go_detail_count;
@@ -27,6 +29,11 @@ public class ImageGroup {
 	private int digg_count;
 	private int has_hot_comments;
 	private int image_status;
+	private int user_repin;
+	private int category_id;
+	private ImageDetail middle_image;
+	private List<Comment> comments;
+	private int type;
 
 	public long getCreate_time() {
 		return create_time;
@@ -251,12 +258,6 @@ public class ImageGroup {
 	public void setType(int type) {
 		this.type = type;
 	}
-
-	private int user_repin;
-	private int category_id;
-	private ImageDetail middle_image;
-	private List<Comment> comments;
-	private int type;
 
 	@Override
 	public String toString() {

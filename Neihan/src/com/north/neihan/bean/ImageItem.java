@@ -1,9 +1,11 @@
 package com.north.neihan.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ImageItem {
+public class ImageItem implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private long online_time;
 	private long display_time;
 	private ImageGroup group;

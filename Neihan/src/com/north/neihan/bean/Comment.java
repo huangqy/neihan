@@ -1,7 +1,10 @@
 package com.north.neihan.bean;
 
-public class Comment {
+import java.io.Serializable;
 
+public class Comment implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private long user_id;
 	private String description;
 	private String text;

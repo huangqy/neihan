@@ -16,6 +16,7 @@ import com.north.neihan.bean.ImageGroup;
 import com.north.neihan.bean.ImageItem;
 import com.north.neihan.bean.ImageUrl;
 import com.north.neihan.bean.JokeData;
+import com.north.neihan.bean.JokeItem;
 import com.north.neihan.client.ClientAPI;
 import com.north.neihan.util.DataParseUtils;
 
@@ -38,41 +39,48 @@ public class TestActivity extends Activity implements Response.Listener<String> 
 	public static final int CATEGORY_TEXT = 1;
 	// 图片ID
 	public static final int CATEGORY_IMAGE = 2;
-	
-	private int itemCount = 0;
+
+	private int itemCount = 30;
 	private RequestQueue mQueue;
-	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_test);
-		
+
 		mQueue = Volley.newRequestQueue(this);
-		
+
 		ClientAPI.getList(mQueue, CATEGORY_TEXT, itemCount, this);
 	}
-	
+
 	@Override
 	public void onResponse(String response) {
 		// TODO Auto-generated method stub
+
+		response = response.replaceAll("\"package\"", "\"packageName\"");
 		
 		JokeData jokeData = DataParseUtils.parseJokeJson(response);
-		System.out.println(jokeData.getData().size());
-		System.out.println(jokeData.getData().toString());
 		
-//		ImageData imageData = DataParseUtils.parseImageJson(response);
-//		System.out.println(imageData.getTip() + " || " + imageData.getMin_time());
-//		List<ImageItem> data = imageData.getData();
-//		System.out.println(data.size());
-//		
-//		ImageItem imageItem = data.get(0);
-//		ImageGroup group = imageItem.getGroup();
-//		ImageDetail large_image = group.getLarge_image();
-//		List<ImageUrl> url_list = large_image.getUrl_list();
-//		for (int i = 0; i < url_list.size(); i++) {
-//			System.out.println(url_list.get(i).getUrl());
-//		}
+		List<JokeItem> list = jokeData.getData();
+		int len = list.size();
+		for (int i = 0; i < len; i++) {
+
+			System.out.println(i + " --->> " + list.get(i).getType());
+		}
+
+		// ImageData imageData = DataParseUtils.parseImageJson(response);
+		// System.out.println(imageData.getTip() + " || " +
+		// imageData.getMin_time());
+		// List<ImageItem> data = imageData.getData();
+		// System.out.println(data.size());
+		//
+		// ImageItem imageItem = data.get(0);
+		// ImageGroup group = imageItem.getGroup();
+		// ImageDetail large_image = group.getLarge_image();
+		// List<ImageUrl> url_list = large_image.getUrl_list();
+		// for (int i = 0; i < url_list.size(); i++) {
+		// System.out.println(url_list.get(i).getUrl());
+		// }
 	}
 
 	@Override
