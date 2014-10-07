@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/essay_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@drawable/bg_titlebar"
+        android:text="@string/main_tab_item_text_essay" />
+    
+    <FrameLayout 
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        
+        <com.handmark.pulltorefresh.library.PullToRefreshListView
+            android:id="@+id/essay_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        
+        
+        <include
+            android:id="@+id/essay_quick_tools"
+            layout="@layout/essay_header_tools" />
+        
+        
+        <TextView
+            android:id="@+id/essay_new_notify"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="#993399FF"
+            android:text="30条新信息" />
+        
+    </FrameLayout>
+
+</LinearLayout>

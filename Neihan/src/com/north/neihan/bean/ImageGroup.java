@@ -32,7 +32,7 @@ public class ImageGroup implements Serializable {
 	private int user_repin;
 	private int category_id;
 	private ImageDetail middle_image;
-	private List<Comment> comments;
+	private List<CommentDetail> comments;
 	private int type;
 
 	public long getCreate_time() {
@@ -243,11 +243,11 @@ public class ImageGroup implements Serializable {
 		this.middle_image = middle_image;
 	}
 
-	public List<Comment> getComments() {
+	public List<CommentDetail> getComments() {
 		return comments;
 	}
 
-	public void setComments(List<Comment> comments) {
+	public void setComments(List<CommentDetail> comments) {
 		this.comments = comments;
 	}
 

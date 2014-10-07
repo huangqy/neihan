@@ -1,7 +1,6 @@
 package com.north.neihan.bean;
 
 import java.io.Serializable;
-import java.util.List;
 
 public class ImageItem implements Serializable {
 
@@ -9,18 +8,8 @@ public class ImageItem implements Serializable {
 	private long online_time;
 	private long display_time;
 	private ImageGroup group;
-	private List<Comment> comments;
+	private CommentData comment;
 	private int type;
-
-	public ImageItem(long online_time, long display_time, ImageGroup group,
-			List<Comment> comments, int type) {
-		super();
-		this.online_time = online_time;
-		this.display_time = display_time;
-		this.group = group;
-		this.comments = comments;
-		this.type = type;
-	}
 
 	public long getOnline_time() {
 		return online_time;
@@ -46,12 +35,12 @@ public class ImageItem implements Serializable {
 		this.group = group;
 	}
 
-	public List<Comment> getComments() {
-		return comments;
+	public CommentData getComment() {
+		return comment;
 	}
 
-	public void setComments(List<Comment> comments) {
-		this.comments = comments;
+	public void setComment(CommentData comment) {
+		this.comment = comment;
 	}
 
 	public int getType() {
@@ -65,7 +54,8 @@ public class ImageItem implements Serializable {
 	@Override
 	public String toString() {
 		return "ImageItem [online_time=" + online_time + ", display_time="
-				+ display_time + ", group=" + group + ", comments=" + comments
+				+ display_time + ", group=" + group + ", comment=" + comment
 				+ ", type=" + type + "]";
 	}
+
 }

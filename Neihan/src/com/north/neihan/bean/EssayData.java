@@ -3,17 +3,17 @@ package com.north.neihan.bean;
 import java.io.Serializable;
 import java.util.List;
 
-public class JokeData implements Serializable {
+public class EssayData implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private long min_time;
 	private boolean has_more;
 	private String tip;
-	private List<JokeItem> data;
+	private List<EssayItem> data;
 	private long max_time;
 
-	public JokeData(long min_time, boolean has_more, String tip,
-			List<JokeItem> data, long max_time) {
+	public EssayData(long min_time, boolean has_more, String tip,
+			List<EssayItem> data, long max_time) {
 		super();
 		this.min_time = min_time;
 		this.has_more = has_more;
@@ -46,11 +46,11 @@ public class JokeData implements Serializable {
 		this.tip = tip;
 	}
 
-	public List<JokeItem> getData() {
+	public List<EssayItem> getData() {
 		return data;
 	}
 
-	public void setData(List<JokeItem> data) {
+	public void setData(List<EssayItem> data) {
 		this.data = data;
 	}
 

@@ -10,20 +10,27 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.north.neihan.R;
+import com.north.neihan.bean.CommentData;
 import com.north.neihan.bean.ImageData;
 import com.north.neihan.bean.ImageDetail;
 import com.north.neihan.bean.ImageGroup;
 import com.north.neihan.bean.ImageItem;
 import com.north.neihan.bean.ImageUrl;
-import com.north.neihan.bean.JokeData;
-import com.north.neihan.bean.JokeItem;
+import com.north.neihan.bean.EssayData;
+import com.north.neihan.bean.EssayItem;
 import com.north.neihan.client.ClientAPI;
 import com.north.neihan.util.DataParseUtils;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 /**
  * 这个文件是测试入口，所有测试代码都写在这
@@ -42,6 +49,9 @@ public class TestActivity extends Activity implements Response.Listener<String> 
 
 	private int itemCount = 30;
 	private RequestQueue mQueue;
+	
+	private Button refreshBtn;
+	private SharedPreferences mSharedPreferences;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,24 +59,61 @@ public class TestActivity extends Activity implements Response.Listener<String> 
 		setContentView(R.layout.activity_test);
 
 		mQueue = Volley.newRequestQueue(this);
-
-		ClientAPI.getList(mQueue, CATEGORY_TEXT, itemCount, this);
+		mSharedPreferences = getPreferences(MODE_PRIVATE);
+		
+//		refreshBtn = (Button) this.findViewById(R.id.refresh_btn);
+//		refreshBtn.setOnClickListener(new View.OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				// TODO Auto-generated method stub
+//				long minTime = mSharedPreferences.getLong("minTime", 0);
+//				Toast.makeText(TestActivity.this, "-->>" + minTime, 1).show();
+//				ClientAPI.getList(mQueue, CATEGORY_TEXT, minTime, itemCount, TestActivity.this);
+//				
+//			}
+//		});
+//		ClientAPI.getList(mQueue, CATEGORY_TEXT, 0, itemCount, TestActivity.this);
+		ClientAPI.getCommentList(mQueue, 20, 3551461874L, 20, TestActivity.this);
 	}
-
+	
 	@Override
 	public void onResponse(String response) {
+		// TODO Auto-generated method stub
+		CommentData commentData = DataParseUtils.parseCommentJson(response);
+		Log.i(TAG, "--->>" + commentData.isHas_more());
+		Log.i(TAG, "--->>" + commentData.getTotal_number());
+		Log.i(TAG, "--->>" + commentData.getData().toString());
+	}
+
+	// 获取段子，图片列表的回调方法
+	public void ListOnResponse(String response) {
 		// TODO Auto-generated method stub
 
 		response = response.replaceAll("\"package\"", "\"packageName\"");
 		
-		JokeData jokeData = DataParseUtils.parseJokeJson(response);
+		EssayData jokeData = DataParseUtils.parseEssayJson(response);
 		
-		List<JokeItem> list = jokeData.getData();
-		int len = list.size();
-		for (int i = 0; i < len; i++) {
+		Log.i(TAG, "--Has_more->>" + jokeData.isHas_more());
+		if (jokeData.isHas_more()) {
+		
+			long lastTime = jokeData.getMin_time();
+			Editor editor = mSharedPreferences.edit();
+			editor.putLong("minTime", lastTime);
+			editor.commit();
 
-			System.out.println(i + " --->> " + list.get(i).getType());
+			Log.i(TAG, "--min_time->>" + lastTime);
+
+			List<EssayItem> list = jokeData.getData();
+			int len = list.size();
+			Log.i(TAG, "--段子条数->>" + len);
+		} else {
+			Log.i(TAG, "--Tip->>" + jokeData.getTip());
 		}
+		
+//		for (int i = 0; i < len; i++) {
+//
+//			System.out.println(i + " --->> " + list.get(i).getType());
+//		}
 
 		// ImageData imageData = DataParseUtils.parseImageJson(response);
 		// System.out.println(imageData.getTip() + " || " +

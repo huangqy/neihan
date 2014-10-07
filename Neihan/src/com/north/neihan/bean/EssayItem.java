@@ -1,16 +1,15 @@
 package com.north.neihan.bean;
 
 import java.io.Serializable;
-import java.util.List;
 
-public class JokeItem implements Serializable {
+public class EssayItem implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private long online_time;
 	private long display_time;
-	private JokeGroup group;
+	private EssayGroup group;
 	private AdDetail ad;
-	private List<Comment> comments;
+	private CommentData comment;
 	private int type;
 
 	public long getOnline_time() {
@@ -29,11 +28,11 @@ public class JokeItem implements Serializable {
 		this.display_time = display_time;
 	}
 
-	public JokeGroup getGroup() {
+	public EssayGroup getGroup() {
 		return group;
 	}
 
-	public void setGroup(JokeGroup group) {
+	public void setGroup(EssayGroup group) {
 		this.group = group;
 	}
 
@@ -45,12 +44,12 @@ public class JokeItem implements Serializable {
 		this.ad = ad;
 	}
 
-	public List<Comment> getComments() {
-		return comments;
+	public CommentData getComment() {
+		return comment;
 	}
 
-	public void setComments(List<Comment> comments) {
-		this.comments = comments;
+	public void setComment(CommentData comment) {
+		this.comment = comment;
 	}
 
 	public int getType() {
@@ -65,7 +64,7 @@ public class JokeItem implements Serializable {
 	public String toString() {
 		return "JokeItem [online_time=" + online_time + ", display_time="
 				+ display_time + ", group=" + group + ", ad=" + ad
-				+ ", comments=" + comments + ", type=" + type + "]";
+				+ ", comment=" + comment + ", type=" + type + "]";
 	}
 
 }

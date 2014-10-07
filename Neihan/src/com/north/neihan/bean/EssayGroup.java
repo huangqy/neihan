@@ -2,7 +2,7 @@ package com.north.neihan.bean;
 
 import java.io.Serializable;
 
-public class JokeGroup implements Serializable {
+public class EssayGroup implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private long create_time;
